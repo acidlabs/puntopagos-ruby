@@ -3,12 +3,14 @@ h1. PuntoPagos
 h2. Installation
 
 In *Rails 3*, add this to your Gemfile and run the bundle command.
+
 <pre>
 	gem "puntopagos"
 </pre>
 In *Rails 2*, add this to your environment.rb file.
+
 <pre>
-	config.gem "cancan"
+	config.gem "puntopagos"
 </pre>
 
 h2. Sample Usage
