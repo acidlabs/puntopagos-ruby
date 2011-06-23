@@ -1,1 +1,25 @@
 h1. PuntoPagos
+
+h2. Installation
+
+In *Rails 3*, add this to your Gemfile and run the bundle command.
+<pre>
+	gem "puntopagos"
+</pre>
+In *Rails 2*, add this to your environment.rb file.
+<pre>
+	config.gem "cancan"
+</pre>
+
+h2. Sample Usage
+
+<pre>
+	soon...
+</pre>
+
+This gem should also work in non-rails apps.
+
+h2. Special Thanks
+
+Thanks to dvinales for not suing us.
+
