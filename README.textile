@@ -13,6 +13,30 @@ In *Rails 2*, add this to your environment.rb file.
 	config.gem "puntopagos"
 </pre>
 
+Create puntopagos.yml to your config folder:
+
+<pre>
+development:
+  environment: 			"sandbox"
+  puntopagos_key:	""
+  puntopagos_secret:	""
+
+development:
+  environment: 			"sandbox"
+  puntopagos_key:		"YOUR-API-KEY"
+  puntopagos_secret:	"YOUR-APP-SECRET"
+
+test:
+  environment: 			"sandbox"
+  puntopagos_key:		"YOUR-API-KEY"
+  puntopagos_secret:	"YOUR-APP-SECRET"
+
+prod:
+  environment: 			"production"
+  puntopagos_key:		"YOUR-API-KEY"
+  puntopagos_secret:	"YOUR-APP-SECRET"
+</pre>
+
 h2. Sample Usage
 
 <pre>
