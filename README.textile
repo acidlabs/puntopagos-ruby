@@ -42,9 +42,9 @@ h2. Sample Usage
 
 h2. Test Data
 
-|Gateway|Payload|Expected Result
-|Transbank|Visa / 4051885600446623 / CVV: 123 / exp: any|Success
-|Transbank|Mastercard / 5186059559590568 / CVV: 123 / exp: any|Failure
+|Gateway|Payload|Expected Result|
+|Transbank|Visa / 4051885600446623 / CVV: 123 / exp: any|Success|
+|Transbank|Mastercard / 5186059559590568 / CVV: 123 / exp: any|Failure|
 
 
 h2. Special Thanks
