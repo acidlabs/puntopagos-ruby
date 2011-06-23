@@ -43,7 +43,11 @@ h2. Sample Usage
 		'monto'		=> '1000.00'
 		#other gateway-specific parameter
 		}
-	req.create
+	
+	resp = req.create(data)
+	if (resp.success?)
+	  redirect_to resp.payment_process_url
+	  
 	
 </pre>
 

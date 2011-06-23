@@ -12,18 +12,10 @@ module PuntoPagos
         @env = env
         @@config ||= PuntoPagos::Config.new(@env)
         @@puntopagos_base_url ||= @@config.puntopagos_base_url
-      end
-
-      
-      
+      end   
 
       def validate
-        #TODO the receiverList field not validating properly
-
-        # @@schema_filepath = "../lib/pay_request_schema.json"
-        # @@schema = File.open(@@schema_filepath, "rb"){|f| JSON.parse(f.read)}
-        # see page 42 of PP Adaptive Payments PDF for explanation of all fields.
-        #JSON::Schema.validate(@data, @@schema)
+        #TODO validate JSON must have monto and trx_id
       end
 
       def create(data)
@@ -31,6 +23,10 @@ module PuntoPagos
         get_headers("/transaccion/crear",data)
         response_data = call_api(data, "/transaccion/crear", :post)
         PuntoPagos::Response.new(response_data, @env)
+      end
+      
+      def procesar
+        
       end
 
 private:
@@ -45,9 +41,9 @@ private:
           'User-Agent' => "puntopagos-ruby-#{PuntoPagos::VERSION}", 
           'Accept' => 'application/json',
           'Accept-Charset' => 'utf-8',
-          'Content-Type' => 'application/json; charset=utf-8',
-          'Fecha' => timestamp,
-          'Autorizacion' => signature
+          'Content-Type'  => 'application/json; charset=utf-8',
+          'Fecha'         => timestamp,
+          'Autorizacion'  => signature
            }
       
       end
