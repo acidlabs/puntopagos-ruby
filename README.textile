@@ -13,28 +13,24 @@ In *Rails 2*, add this to your environment.rb file.
 	config.gem "puntopagos"
 </pre>
 
+
 Create puntopagos.yml to your config folder:
 
 <pre>
 development:
-  environment: 			"sandbox"
-  puntopagos_key:	""
-  puntopagos_secret:	""
-
-development:
-  environment: 			"sandbox"
-  puntopagos_key:		"YOUR-API-KEY"
-  puntopagos_secret:	"YOUR-APP-SECRET"
+  environment:        "sandbox"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"
 
 test:
-  environment: 			"sandbox"
-  puntopagos_key:		"YOUR-API-KEY"
-  puntopagos_secret:	"YOUR-APP-SECRET"
+  environment:        "sandbox"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"
 
-prod:
-  environment: 			"production"
-  puntopagos_key:		"YOUR-API-KEY"
-  puntopagos_secret:	"YOUR-APP-SECRET"
+production:
+  environment:        "production"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"
 </pre>
 
 h2. Sample Usage
@@ -43,7 +39,13 @@ h2. Sample Usage
 	soon...
 </pre>
 
-This gem should also work in non-rails apps.
+
+h2. Test Data
+
+|Gateway|Payload|Expected Result
+|Transbank|Visa / 4051885600446623 / CVV: 123 / exp: any|Success
+|Transbank|Mastercard / 5186059559590568 / CVV: 123 / exp: any|Failure
+
 
 h2. Special Thanks
 
