@@ -37,6 +37,14 @@ h2. Sample Usage
 
 <pre>
 	soon...
+	req = PuntoPagos::Request.new
+	data = { 
+		'trx_id' 	=> 'UNIQUE-TRACKING-ID',
+		'monto'		=> '1000.00'
+		#other gateway-specific parameter
+		}
+	req.create
+	
 </pre>
 
 

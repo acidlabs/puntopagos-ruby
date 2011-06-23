@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ignacio Mella", "Gert Findel"]
   s.email       = ["imella@acid.cl"]
-  s.homepage    = %q{https://github.com/acidcl/puntopagos}
+  s.homepage    = %q{https://github.com/acidcl/puntopagos-ruby}
   s.summary     = %q{Ruby wrapper for PuntoPagos Payment API}
   s.description = %q{Ruby wrapper for PuntoPagos Payment API}
 
