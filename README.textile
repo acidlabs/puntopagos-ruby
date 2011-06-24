@@ -1,18 +1,14 @@
 h1. PuntoPagos
 
+This development is in a very early stage, please use it at your own risk and feel free to improve it and send Pull Requests 
+
 h2. Installation
 
-In *Rails 3*, add this to your Gemfile and run the bundle command.
+If your are using a Gemfile add the following line and run the bundle command.
 
 <pre>
-	gem "puntopagos"
+	gem "puntopagos", :git => 'git://github.com/acidcl/puntopagos-ruby.git'
 </pre>
-In *Rails 2*, add this to your environment.rb file.
-
-<pre>
-	config.gem "puntopagos"
-</pre>
-
 
 Create puntopagos.yml to your config folder:
 
@@ -36,7 +32,7 @@ production:
 h2. Sample Usage
 
 <pre>
-	soon...
+
 	req = PuntoPagos::Request.new
 	data = { 
 		'trx_id' 	=> 'UNIQUE-TRACKING-ID',
@@ -57,6 +53,12 @@ h2. Test Data
 |Gateway|Payload|Expected Result|
 |Transbank|Visa / 4051885600446623 / CVV: 123 / exp: any|Success|
 |Transbank|Mastercard / 5186059559590568 / CVV: 123 / exp: any|Failure|
+
+h2. TODO
+
+* config testing
+* response testing
+* functional testing
 
 
 h2. Special Thanks
