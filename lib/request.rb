@@ -38,7 +38,6 @@ private
         timestamp = Time.now.strftime("%a, %d %b %Y %H:%M:%S GMT")
         message   = function+"\n"+data['trx_id'].to_s+"\n"+data['monto'].to_s+"\n"+timestamp
         signature = "PP "+@@config.puntopagos_key+":"+sign(message).chomp!
-        puts signature
         @@headers = {
           'User-Agent' => "puntopagos-ruby-#{PuntoPagos::VERSION}", 
           'Accept' => 'application/json',
