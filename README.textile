@@ -1,6 +1,6 @@
 h1. PuntoPagos
 
-This development is in a very early stage, please use it at your own risk and feel free to improve it and send Pull Requests 
+This development is in a very early stage, please use it at your own risk and feel free to improve it and send Pull Requests.
 
 h2. Installation
 
@@ -60,6 +60,10 @@ h2. TODO
 * Response testing
 * Functional testing
 * Documentation 
+
+h2. Credits 
+
+Ignacio Mella & Gert Findel
 
 h2. Special Thanks
 
