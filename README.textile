@@ -43,7 +43,7 @@ h2. Sample Usage
 	resp = req.create(data)
 	if (resp.success?)
 	  redirect_to resp.payment_process_url
-	  
+	end
 	
 </pre>
 
