@@ -56,10 +56,10 @@ h2. Test Data
 
 h2. TODO
 
-* config testing
-* response testing
-* functional testing
-
+* Config testing
+* Response testing
+* Functional testing
+* Documentation 
 
 h2. Special Thanks
 
