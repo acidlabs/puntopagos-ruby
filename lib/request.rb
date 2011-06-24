@@ -1,6 +1,9 @@
+require 'base64'
+require 'openssl'
 require 'json'
 require 'net/http'
 require 'net/https'
+
 
 module PuntoPagos
   
@@ -29,14 +32,14 @@ module PuntoPagos
         
       end
 
-private:
+private
 
       def get_headers(function, data)
         raise NoDataError unless data
         
-        timestamp = Time.now.utc.to_s(:rfc822).sub(/\+0000/, 'GMT')
-        message   = function+"\n"+data['trx_id'].to_s+"\n"+data['monto']+"\n"+timestamp
-        signature = "PP "+PUNTOPAGOS_KEY+":"+sign(message)
+        timestamp = Time.now.strftime("%a, %d %b %Y %H:%M:%S GMT")
+        message   = function+"\n"+data['trx_id'].to_s+"\n"+data['monto'].to_s+"\n"+timestamp.to_s
+        signature = "PP "+@@config.puntopagos_key+":"+sign(message)
         @@headers = {
           'User-Agent' => "puntopagos-ruby-#{PuntoPagos::VERSION}", 
           'Accept' => 'application/json',
@@ -51,17 +54,17 @@ private:
       def call_api(data, path, method)
         #hack fix: JSON.unparse doesn't work in Rails 2.3.5; only {}.to_json does..
         api_request_data = JSON.unparse(data) rescue data.to_json
-        url = URI.parse @@api_base_url
+        url = URI.parse @@puntopagos_base_url
         http = Net::HTTP.new(url.host, 443)
         http.use_ssl = true
 
-        resp, response_data = http.method(method).(path, api_request_data, @@headers)
+        resp, response_data = http.method(method).call(path, api_request_data, @@headers)
 
         JSON.parse(response_data)
       end
       
       def sign(string)
-          Base64.encode64(HMAC::SHA1.digest(@@config.puntopagos_secret, string)).chomp.gsub(/\n/,'')
+          Base64.encode64(OpenSSL::HMAC.digest('sha1',@@config.puntopagos_secret, string)).chomp.gsub(/\n/,'')
       end
     end
 end

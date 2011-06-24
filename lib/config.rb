@@ -3,8 +3,8 @@ require 'yaml'
 module PuntoPagos
   class Config
     PUNTOPAGOS_BASE_URL = {
-      :production => "https://www.puntopagos.com/",
-      :sandbox => "https://sandobox.puntopagos.com/"
+      :production => "www.puntopagos.com/",
+      :sandbox => "sandobox.puntopagos.com/"
     }
     
     attr_accessor :config_filepath, :puntopagos_base_url, :puntopagos_key, :puntopagos_secret

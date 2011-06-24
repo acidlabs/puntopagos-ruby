@@ -4,7 +4,7 @@ require "puntopagos/version"
 
 Gem::Specification.new do |s|
   s.name        = %q{puntopagos}
-  s.version     = Puntopagos::VERSION
+  s.version     = PuntoPagos::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ignacio Mella", "Gert Findel"]
   s.email       = ["imella@acid.cl"]

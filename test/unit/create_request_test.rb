@@ -25,6 +25,11 @@ class CreateRequestTest < Test::Unit::TestCase
   def test_invalid_webpay_pay
     puts "webpay invalid"
     
+    data = { 
+  		'trx_id' 	=> "#{Time.now.to_i}"
+  		}    
+  	resp = @req.create(data)
+    
     assert resp.success? == false
     
   end
