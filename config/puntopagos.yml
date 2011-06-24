@@ -1,4 +1,4 @@
 test:
   environment:        "sandbox"
-  puntopagos_key:     "6EMvSVjKh1pBEqJtB5JR"
-  puntopagos_secret:  "KoRQDyo2gfAqDqKUS2EDamSINDrn2PcVZmQrwYvr"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"

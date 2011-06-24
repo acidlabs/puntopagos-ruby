@@ -1,22 +1,19 @@
 module PuntoPagos
-  class Repsonse
+  class Response
     def initialize(response, env = nil)
       @@config ||= PuntoPagos::Config.new(env)
       @@puntopagos_base_url ||= @@config.puntopagos_base_url
       @@response = response
-      @@body = JSON.parse(response.body)
       
     end
     
     # TODO validate JSON
     def success?
-      if @@response.code.to_i == 200
-        @@body["respuesta"] == "00"
-      end
+      @@response["respuesta"] == "00"
     end
     
     def get_token
-      @@body["token"]
+      @@response["token"]
     end
     
     def payment_process_url

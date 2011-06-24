@@ -12,12 +12,12 @@ class CreateRequestTest < Test::Unit::TestCase
     puts "webpay valid"
     
     data = { 
-  		'trx_id' 	=> "#{Time.now.to_i}",
-  		'monto'		=> '1000.00'
+  		"trx_id" 	=> 3342313,
+  		"monto"		=> "100.00"
   		}    
   	resp = @req.create(data)
     
-    assert resp.success?
+    assert resp.success? == true
     
 #    payload = YAML.load_file(File.join(File.dirname(__FILE__),"..", "data","webpay_paylaod.yml"))
   end
@@ -30,7 +30,7 @@ class CreateRequestTest < Test::Unit::TestCase
   		}    
   	resp = @req.create(data)
     
-    assert resp.success? == false
+    assert resp.success? == false, "Pass"
     
   end
 
