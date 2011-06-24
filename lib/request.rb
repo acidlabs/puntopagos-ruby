@@ -1,8 +1,7 @@
 require 'base64'
 require 'openssl'
 require 'json'
-require 'net/http'
-require 'net/https'
+require 'httparty'
 
 
 module PuntoPagos
@@ -11,10 +10,13 @@ module PuntoPagos
   end
   
   class Request
+    include HTTParty
+    
       def initialize(env = nil)
         @env = env
         @@config ||= PuntoPagos::Config.new(@env)
         @@puntopagos_base_url ||= @@config.puntopagos_base_url
+        base_uri  @@puntopagos_base_url
       end   
 
       def validate
@@ -28,9 +30,7 @@ module PuntoPagos
         PuntoPagos::Response.new(response_data, @env)
       end
       
-      def procesar
-        
-      end
+    
 
 private
 
@@ -54,12 +54,15 @@ private
       def call_api(data, path, method)
         #hack fix: JSON.unparse doesn't work in Rails 2.3.5; only {}.to_json does..
         api_request_data = JSON.unparse(data) rescue data.to_json
-        url = URI.parse @@puntopagos_base_url
-        http = Net::HTTP.new(url.host, 443)
-        http.use_ssl = true
+        # url = URI.parse @@puntopagos_base_url
+        #         http = Net::HTTP.new(url.host, 443)
+        #         http.use_ssl = true
+        #   
 
-        resp, response_data = http.method(method).call(path, api_request_data, @@headers)
+        # resp, response_data = http.method(method).call(path, api_request_data, @@headers)
 
+        response_data = self.post(path, :body => api_request_data, :headers => @@headers)
+        
         JSON.parse(response_data)
       end
       
