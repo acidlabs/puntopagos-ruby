@@ -25,7 +25,6 @@ module PuntoPagos
         raise NoDataError unless data
         get_headers("transaccion/crear",data)
         response_data = call_api(data, "/transaccion/crear", :post)
-        puts response_data
         PuntoPagos::Response.new(response_data, @env)
       end
       
