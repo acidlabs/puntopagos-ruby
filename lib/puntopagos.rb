@@ -1,4 +1,4 @@
-require File.expand_path(File.join(File.dirname(__FILE__), "config"))
-require File.expand_path(File.join(File.dirname(__FILE__), "request"))
-require File.expand_path(File.join(File.dirname(__FILE__), "response"))
-require File.expand_path(File.join(File.dirname(__FILE__), "puntopagos", "version"))
+require "puntopagos/config"
+require "puntopagos/request"
+require "puntopagos/response"
+require "puntopagos/version"
