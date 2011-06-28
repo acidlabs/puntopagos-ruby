@@ -12,7 +12,7 @@ module PuntoPagos
     def initialize(env = nil, config_override = nil)
       if env
         # For non-rails apps
-        @config_filepath = File.join(File.dirname(__FILE__), "..", "config", "puntopagos.yml")
+        @config_filepath = File.join(File.dirname(__FILE__), "..", "..", "config", "puntopagos.yml")
         load(env)
       else
         @config_filepath = File.join(Rails.root, "config", "puntopagos.yml")
