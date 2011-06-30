@@ -16,6 +16,10 @@ module PuntoPagos
       @@response["token"]
     end
     
+    def get_error
+      @@response["error"]
+    end
+    
     def payment_process_url
       @@puntopagos_base_url + "/transaccion/procesar/"+get_token
     end
