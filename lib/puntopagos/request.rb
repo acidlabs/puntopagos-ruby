@@ -51,7 +51,11 @@ private
       def call_api(data, path, method)
         #hack fix: JSON.unparse doesn't work in Rails 2.3.5; only {}.to_json does..
         api_request_data = JSON.unparse(data) rescue data.to_json
-        resp = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, @@headers)
+        begin
+          resp = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, @@headers)
+        rescue => e
+          e.response
+        end
         
         JSON.parse(resp)
       end
