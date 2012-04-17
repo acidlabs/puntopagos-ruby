@@ -7,7 +7,7 @@ h2. Installation
 If your are using a Gemfile add the following line and run the bundle command.
 
 <pre>
-gem "puntopagos", :git => 'git://github.com/acidcl/puntopagos-ruby.git'
+gem "puntopagos", :git => 'git://github.com/acidlabs/puntopagos-ruby.git'
 </pre>
 
 Create puntopagos.yml to your config folder:
