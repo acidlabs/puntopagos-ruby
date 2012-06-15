@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "puntopagos/version"
 
 Gem::Specification.new do |s|
-  s.name        = %q{puntopagos}
+  s.name        = 'puntopagos'
   s.version     = PuntoPagos::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ignacio Mella", "Gert Findel"]
@@ -11,8 +11,6 @@ Gem::Specification.new do |s|
   s.homepage    = %q{https://github.com/acidcl/puntopagos-ruby}
   s.summary     = %q{Ruby wrapper for PuntoPagos Payment API}
   s.description = %q{Ruby wrapper for PuntoPagos Payment API}
-
-  s.rubyforge_project = %q{puntopagos}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
