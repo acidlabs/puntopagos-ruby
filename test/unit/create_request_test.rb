@@ -35,4 +35,12 @@ class CreateRequestTest < Test::Unit::TestCase
 
   end
 
+  def test_notification
+    puts "testing notification"
+    notification = PuntoPagos::Notification.new('production')
+    headers = {'Fecha' => 'Thu, 14 Jun 2012 22:52:47 GMT', 'Autorizacion' => 'PP rkdXmAGWLHCKdPyyk6ig:qOSavthLY3ElqsRCtxFEl02lL1s='}
+    params = {'token' => 'M5N1DAE6PALVAF8K', 'monto' => '1000000.00', 'trx_id' => '9787415132'}
+    assert notification.valid?(headers, params) == true
+  end
+
 end
