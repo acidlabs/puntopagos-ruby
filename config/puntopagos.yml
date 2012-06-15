@@ -1,4 +1,0 @@
-production:
-  environment:        "sandbox"
-  puntopagos_key:     "rkdXmAGWLHCKdPyyk6ig"
-  puntopagos_secret:  "Yq8jajg8PQaHNMbTR4d6oWGXZxP3yMZFL3Qp3SnM"
