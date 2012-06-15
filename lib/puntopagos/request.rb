@@ -5,59 +5,55 @@ require 'rest_client'
 
 
 module PuntoPagos
-  
+
   class NoDataError < Exception
   end
-  
+
   class Request
-    
-      def initialize(env = nil)
-        @env = env
-        @@config ||= PuntoPagos::Config.new(@env)
-        @@puntopagos_base_url ||= @@config.puntopagos_base_url
-      end   
+    def initialize env = nil
+      @env = env
+      @@config ||= PuntoPagos::Config.new(@env)
+      @@puntopagos_base_url ||= @@config.puntopagos_base_url
+      @@function = "transaccion/crear"
+    end
 
-      def validate
-        #TODO validate JSON must have monto and trx_id
-      end
+    def validate
+      #TODO validate JSON must have monto and trx_id
+    end
 
-      def create(data)
-        raise NoDataError unless data
-        get_headers("transaccion/crear",data)
-        response_data = call_api(data, "/TransactionService/crear", :post)
-        PuntoPagos::Response.new(response_data, @env)
-      end
-      
-    
+    def create trx_id, amount, payment_type = nil
+      raise NoDataError unless trx_id and amount
+      data = create_data trx_id, amount, payment_type
+
+      timestamp = get_timestamp
+
+      message = create_message(data['trx_id'], data['monto'], timestamp)
+      authorization = PuntoPagos::Authorization.new(@env)
+      signature = authorization.sign(message)
+      executioner = PuntoPagos::Executioner.new(@env)
+
+      response_data = executioner.call_api(data, @@function, :post, signature, timestamp)
+      PuntoPagos::Response.new(response_data, @env)
+    end
+
 
 private
 
-      def get_headers(function, data)
-        raise NoDataError unless data
-        
-        timestamp = Time.now.strftime("%a, %d %b %Y %H:%M:%S GMT")
-        message   = function+"\n"+data['trx_id'].to_s+"\n"+data['monto'].to_s+"\n"+timestamp
-        signature = "PP "+@@config.puntopagos_key+":"+sign(message).chomp!
-        @@headers = {
-          'User-Agent' => "puntopagos-ruby-#{PuntoPagos::VERSION}", 
-          'Accept' => 'application/json',
-          'Accept-Charset' => 'utf-8',
-          'Content-Type'  => 'application/json; charset=utf-8',
-          'Fecha'         => timestamp,
-          'Autorizacion'  => signature
-           }
-      end
-
-      def call_api(data, path, method)
-        #hack fix: JSON.unparse doesn't work in Rails 2.3.5; only {}.to_json does..
-        api_request_data = JSON.unparse(data) rescue data.to_json
-        resp = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, @@headers)
-        
-        JSON.parse(resp)
-      end
-      
-      def sign(string)
-          Base64.encode64(OpenSSL::HMAC.digest('sha1',@@config.puntopagos_secret, string))
-      end
+    def create_message trx_id, amount, timestamp
+      @@function + "\n" + trx_id + "\n" + amount + "\n" + timestamp
     end
+
+    def create_data trx_id, amount, payment_type = nil
+      data = {}
+      data['trx_id']      = trx_id
+      data['monto']       = amount
+      data['medio_pago']  = payment_type if payment_type
+      data
+    end
+
+    def get_timestamp
+      Time.now.strftime("%a, %d %b %Y %H:%M:%S GMT")
+    end
+
+  end
 end

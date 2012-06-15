@@ -3,13 +3,13 @@ require 'yaml'
 module PuntoPagos
   class Config
     PUNTOPAGOS_BASE_URL = {
-      :production => "https://www.puntopagos.com",
-      :sandbox => "https://sandbox.puntopagos.com"
+      :production => "https://www.puntopagos.com/",
+      :sandbox => "https://sandbox.puntopagos.com/"
     }
     
     attr_accessor :config_filepath, :puntopagos_base_url, :puntopagos_key, :puntopagos_secret
     
-    def initialize(env = nil, config_override = nil)
+    def initialize env = nil, config_override = nil
       if env
         # For non-rails apps
         @config_filepath = File.join(File.dirname(__FILE__), "..", "..", "config", "puntopagos.yml")
