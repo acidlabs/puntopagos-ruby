@@ -1,6 +1,8 @@
 require 'yaml'
 
 module PuntoPagos
+  # Public: Manage configurations variables
+  # like production and sandbox URLs and puntopagos.yml config file
   class Config
     PUNTOPAGOS_BASE_URL = {
       :production => "https://www.puntopagos.com/",
@@ -9,6 +11,12 @@ module PuntoPagos
     
     attr_accessor :config_filepath, :puntopagos_base_url, :puntopagos_key, :puntopagos_secret
     
+    # Public: Loads the configuration file puntopagos.yml
+    # If it's a rails application it will take the file from the config/ directory
+    #
+    # env - Environment.
+    #
+    # Returns a Config object.
     def initialize env = nil, config_override = nil
       if env
         # For non-rails apps
@@ -20,6 +28,13 @@ module PuntoPagos
       end
     end
     
+    private 
+
+    # Public: Initialize variables based on puntopagos.yml
+    #
+    # rails_env - Environment.
+    #
+    # Returns nothing.
     def load(rails_env)
       config = YAML.load_file(@config_filepath)[rails_env]
       pp_env = config['environment'].to_sym

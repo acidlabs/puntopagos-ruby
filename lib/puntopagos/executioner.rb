@@ -10,9 +10,9 @@ module PuntoPagos
 
     def call_api data, path, method, signature, timestamp
       #hack fix: JSON.unparse doesn't work in Rails 2.3.5; only {}.to_json does..
-      headers = set_headers(signature, timestamp)
+      headers          = set_headers(signature, timestamp)
       api_request_data = JSON.unparse(data) rescue data.to_json
-      resp = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, headers)
+      resp             = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, headers)
       JSON.parse(resp)
     end
 
@@ -20,12 +20,12 @@ module PuntoPagos
 
     def set_headers signature, timestamp
       headers = {
-        'User-Agent' => "puntopagos-ruby-#{PuntoPagos::VERSION}",
-        'Accept' => 'application/json',
+        'User-Agent'     => "puntopagos-ruby-#{PuntoPagos::VERSION}",
+        'Accept'         => 'application/json',
         'Accept-Charset' => 'utf-8',
-        'Content-Type'  => 'application/json; charset=utf-8',
-        'Fecha'         => timestamp,
-        'Autorizacion'  => signature
+        'Content-Type'   => 'application/json; charset=utf-8',
+        'Fecha'          => timestamp,
+        'Autorizacion'   => signature
       }
     end
   end
