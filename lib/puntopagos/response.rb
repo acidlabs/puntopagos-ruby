@@ -9,6 +9,7 @@ module PuntoPagos
 
     # TODO validate JSON
     def success?
+      puts "#{@@response['respuesta']}"
       @@response["respuesta"] == "00"
     end
 

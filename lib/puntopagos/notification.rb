@@ -36,6 +36,7 @@ module PuntoPagos
     #
     # Returns a message as a String.
     def create_message token, trx_id, amount, timestamp
+      amount = amount.to_i.to_s + ".00"
       @@function + "\n" + token + "\n" + trx_id + "\n" + amount + "\n" + timestamp
     end
 
