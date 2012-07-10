@@ -9,7 +9,7 @@ module PuntoPagos
     def valid? headers, params
       timestamp = get_timestamp headers
 
-      message = create_message params["token"], params["trx_id"], params["monto"], timestamp
+      message = create_message params["token"], params["trx_id"], params["monto"].to_s, timestamp
       authorization = Authorization.new(@env)
       signature = authorization.sign(message)
       signature == pp_signature(headers)
