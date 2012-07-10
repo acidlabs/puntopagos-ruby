@@ -4,7 +4,7 @@ module PuntoPagos
     def initialize env = nil
       @env = env
       @@config ||= PuntoPagos::Config.new(@env)
-      @@function = "transaccion/notificar"
+      @@function = "transaccion/notificacion"
     end
 
     # Public: Validates the message sent by PuntoPagos in the
