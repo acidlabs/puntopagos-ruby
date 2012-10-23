@@ -7,7 +7,7 @@ h2. Installation
 If your are using a Gemfile add the following line and run the bundle command.
 
 <pre>
-gem "puntopagos", :git => 'git://github.com/acidcl/puntopagos-ruby.git'
+gem "puntopagos"
 </pre>
 
 Create puntopagos.yml to your config folder:
@@ -17,12 +17,10 @@ development:
   environment:        "sandbox"
   puntopagos_key:     "YOUR-API-KEY"
   puntopagos_secret:  "YOUR-APP-SECRET"
-
 test:
   environment:        "sandbox"
   puntopagos_key:     "YOUR-API-KEY"
   puntopagos_secret:  "YOUR-APP-SECRET"
-
 production:
   environment:        "production"
   puntopagos_key:     "YOUR-API-KEY"
@@ -31,20 +29,29 @@ production:
 
 h2. Sample Usage
 
-<pre>
+h3. Create a Transaction and Redirect to process url
 
-	req = PuntoPagos::Request.new
-	data = { 
-		'trx_id' 	=> 'UNIQUE-TRACKING-ID',
-		'monto'		=> '1000.00'
-		#other gateway-specific parameter
-		}
-	
-	resp = req.create(data)
+<pre>
+  trx_id         = 'UNIQUE-TRACKING-ID' # Number as a string
+  amount         = '1000.00'            # Number as a string with two decimals
+  payment_method = 'some number'        # Optional parameter (see PuntoPagos documentation)
+  req = PuntoPagos::Request.new()
+  resp = req.create(trx_id, amount, payment_method)
 	if (resp.success?)
 	  redirect_to resp.payment_process_url
 	end
-	
+</pre>
+
+h3. Verify notification sent by PuntoPagos
+
+<pre>
+  # Action where PuntoPagos it's gonna post
+  def action
+    notification = PuntoPagos::Notification.new
+    # This methods requires the headers as a hash and the params object as a hash
+    notification.valid? headers, params
+  end
+
 </pre>
 
 
@@ -59,9 +66,9 @@ h2. TODO
 * Config testing
 * Response testing
 * Functional testing
-* Documentation 
+* Documentation
 
-h2. Credits 
+h2. Credits
 
 Ignacio Mella & Gert Findel
 
