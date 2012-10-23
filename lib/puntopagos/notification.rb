@@ -21,7 +21,7 @@ module PuntoPagos
       authorization = Authorization.new(@env)
       signature = authorization.sign(message)
       verification = PuntoPagos::Verification.new(@env)
-      (signature == pp_signature(headers)) and (verification.verify(params["token"], params["trx_id"], params["monto"].to_s + ".00"))
+      (signature == pp_signature(headers)) and (verification.verify(params["token"], params["trx_id"], params["monto"].to_i.to_s + ".00"))
 
     end
 
