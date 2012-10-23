@@ -22,6 +22,7 @@ module PuntoPagos
       signature = authorization.sign(message)
 
       puts "SIGNATURE: #{signature} TIMESTAMP: #{timestamp} TOKEN: #{token} TRX: #{trx_id}"
+      puts "MESSAGE: #{message}"
 
       response = executioner.call_api(nil, @@path, :get, signature, timestamp)
 
