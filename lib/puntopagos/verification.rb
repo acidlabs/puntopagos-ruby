@@ -16,7 +16,8 @@ module PuntoPagos
     # Returns the signed String.
     def verify token, trx_id, amount
       executioner = PuntoPagos::Executioner.new(@env)
-      message = create_message token, trx_id, amount, get_timestamp
+      timestamp = get_timestamp
+      message = create_message token, trx_id, amount, timestamp
       authorization = PuntoPagos::Authorization.new(@env)
       signature = authorization.sign(message)
 
