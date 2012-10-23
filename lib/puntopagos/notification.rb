@@ -20,7 +20,8 @@ module PuntoPagos
       message = create_message params["token"], params["trx_id"], params["monto"].to_s, timestamp
       authorization = Authorization.new(@env)
       signature = authorization.sign(message)
-      signature == pp_signature(headers)
+      verification = PuntoPagos::Verification.new(@env)
+      (signature == pp_signature(headers)) and (verification.verify(params["token"], params["trx_id"], params["monto"].to_s))
 
     end
 
