@@ -24,7 +24,7 @@ module PuntoPagos
       puts "SIGNATURE: #{signature} TIMESTAMP: #{timestamp} TOKEN: #{token} TRX: #{trx_id}"
       puts "MESSAGE: #{message}"
 
-      response = executioner.call_api(nil, @@path, :get, signature, timestamp)
+      response = executioner.call_api(token, @@path, :get, signature, timestamp)
 
       valid?(response)
     end

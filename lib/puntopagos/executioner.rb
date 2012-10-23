@@ -16,7 +16,7 @@ module PuntoPagos
         resp             = RestClient.method(method).call(@@puntopagos_base_url+path, data.to_json, headers)
       elsif method == :get
         puts "METHOD: #{method} URL:#{@@puntopagos_base_url} PATH:#{path}"
-        resp             = RestClient.method(method).call(@@puntopagos_base_url+path, headers)
+        resp             = RestClient.method(method).call(@@puntopagos_base_url+path+data, headers)
       end
       JSON.parse(resp)
     end
