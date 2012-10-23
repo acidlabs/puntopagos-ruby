@@ -21,6 +21,8 @@ module PuntoPagos
       authorization = PuntoPagos::Authorization.new(@env)
       signature = authorization.sign(message)
 
+      puts "SIGNATURE: #{signature} TIMESTAMP: #{timestamp} TOKEN: #{token}"
+
       response = executioner.call_api(nil, @@path, :get, signature, timestamp)
 
       valid?(response)
