@@ -1,8 +1,7 @@
-require File.join(File.dirname(__FILE__),"puntopagos/config")
-require File.join(File.dirname(__FILE__),"puntopagos/authorization")
-require File.join(File.dirname(__FILE__),"puntopagos/executioner")
-require File.join(File.dirname(__FILE__),"puntopagos/request")
-require File.join(File.dirname(__FILE__),"puntopagos/response")
-require File.join(File.dirname(__FILE__),"puntopagos/notification")
-require File.join(File.dirname(__FILE__),"puntopagos/verification")
-require File.join(File.dirname(__FILE__),"puntopagos/version")
+require "puntopagos/config"
+require "puntopagos/authorization"
+require "puntopagos/executioner"
+require "puntopagos/request"
+require "puntopagos/response"
+require "puntopagos/notification"
+require "puntopagos/verification"
