@@ -16,11 +16,15 @@ module PuntoPagos
     # Returns the signed String.
     def verify token, trx_id, amount
       executioner = PuntoPagos::Executioner.new(@env)
-      message = create_message token, trx_id, amount, get_timestamp
+      timestamp = get_timestamp
+      message = create_message token, trx_id, amount, timestamp
       authorization = PuntoPagos::Authorization.new(@env)
       signature = authorization.sign(message)
 
-      response = executioner.call_api(nil, @@path, :get, signature, timestamp)
+      puts "SIGNATURE: #{signature} TIMESTAMP: #{timestamp} TOKEN: #{token} TRX: #{trx_id}"
+      puts "MESSAGE: #{message}"
+
+      response = executioner.call_api(token, @@path, :get, signature, timestamp)
 
       valid?(response)
     end
