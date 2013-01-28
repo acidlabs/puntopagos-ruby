@@ -54,6 +54,14 @@ h3. Verify notification sent by PuntoPagos
 
 </pre>
 
+h3. Check status of a transaction
+
+<pre>
+  status = Status.new
+  status.check
+  status.valid?  # if there's an error you can call status.error
+</pre>
+
 
 h2. Test Data
 
