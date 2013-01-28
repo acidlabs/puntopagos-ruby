@@ -1,0 +1,12 @@
+development:
+  environment:        "sandbox"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"
+test:
+  environment:        "sandbox"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"
+production:
+  environment:        "production"
+  puntopagos_key:     "YOUR-API-KEY"
+  puntopagos_secret:  "YOUR-APP-SECRET"

@@ -4,7 +4,7 @@ require 'test_helper'
 class CreateRequestTest < Test::Unit::TestCase
 
   def setup
-    @req = PuntoPagos::Request.new('production')
+    @req = PuntoPagos::Request.new('test')
   end
 
   def test_valid_create
