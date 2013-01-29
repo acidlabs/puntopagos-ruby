@@ -58,7 +58,7 @@ h3. Check status of a transaction
 
 <pre>
   status = PuntoPagos::Status.new
-  status.check
+  status.check token, trx_id, amount
   status.valid?  # if there's an error you can call status.error
 </pre>
 
