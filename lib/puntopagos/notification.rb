@@ -5,6 +5,7 @@ module PuntoPagos
       @env = env
       @@config ||= PuntoPagos::Config.new(@env)
       @@function = "transaccion/notificacion"
+      @verification = nil
     end
 
     # Public: Validates the message sent by PuntoPagos in the
@@ -20,9 +21,13 @@ module PuntoPagos
       message = create_message params["token"], params["trx_id"], params["monto"].to_s, timestamp
       authorization = Authorization.new(@env)
       signature = authorization.sign(message)
-      verification = PuntoPagos::Verification.new(@env)
-      (signature == pp_signature(headers)) and (verification.verify(params["token"], params["trx_id"], params["monto"].to_i.to_s + ".00"))
+      @verification = PuntoPagos::Verification.new(@env)
+      (signature == pp_signature(headers)) and (@verification.verify(params["token"], params["trx_id"], params["monto"].to_i.to_s + ".00"))
 
+    end
+
+    def error
+      @verification.error
     end
 
     private

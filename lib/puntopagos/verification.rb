@@ -8,6 +8,7 @@ module PuntoPagos
       @@config ||= PuntoPagos::Config.new(env)
       @@function = "transaccion/traer"
       @@path = "transaccion"
+      @response = nil
     end
 
     # Public: Signs a string using the secret and api-key defined in puntopagos.yml
@@ -24,13 +25,17 @@ module PuntoPagos
       puts "SIGNATURE: #{signature} TIMESTAMP: #{timestamp} TOKEN: #{token} TRX: #{trx_id}"
       puts "MESSAGE: #{message}"
 
-      response = executioner.call_api(token, @@path, :get, signature, timestamp)
+      @response = executioner.call_api(token, @@path, :get, signature, timestamp)
 
-      valid?(response)
+      valid?(@response)
     end
 
     def valid? response
       response["respuesta"] == "00"
+    end
+
+    def error
+      @response['error']
     end
 
     private
