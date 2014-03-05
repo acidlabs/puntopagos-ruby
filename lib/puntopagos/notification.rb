@@ -21,6 +21,8 @@ module PuntoPagos
       message = create_message params["token"], params["trx_id"], params["monto"].to_s, timestamp
       authorization = Authorization.new(@env)
       signature = authorization.sign(message)
+      puts "Generated Message: #{message}"
+      puts "Generated Signature #{signature}"
       @verification = PuntoPagos::Verification.new(@env)
       (signature == pp_signature(headers)) and (@verification.verify(params["token"], params["trx_id"], params["monto"].to_i.to_s + ".00"))
 
@@ -52,6 +54,7 @@ module PuntoPagos
     #
     # Returns the Autorizacion HTTP Header value.
     def pp_signature headers
+      puts "Notification Authorization: #{headers['Autorizacion']}"
       headers['Autorizacion']
     end
 
@@ -61,6 +64,7 @@ module PuntoPagos
     #
     # Returns the Fecha HTTP Header value.
     def get_timestamp headers
+      puts "Notification Date #{headers['Fecha']}"
       headers['Fecha']
     end
   end

@@ -8,7 +8,7 @@ module PuntoPagos
       @@config ||= PuntoPagos::Config.new(env)
       @@function = "transaccion/traer"
       @@path = "transaccion"
-      @response = nil
+      @response = {}
     end
 
     # Public: Signs a string using the secret and api-key defined in puntopagos.yml
@@ -35,7 +35,7 @@ module PuntoPagos
     end
 
     def error
-      @response['error']
+      @response
     end
 
     private
