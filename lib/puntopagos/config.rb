@@ -36,7 +36,7 @@ module PuntoPagos
     #
     # Returns nothing.
     def load(rails_env)
-      config = YAML.load_file(@config_filepath)[rails_env]
+      config = YAML.load(ERB.new(File.read(@config_filepath)).result)[rails_env]
       pp_env = config['environment'].to_sym
       @puntopagos_base_url = PUNTOPAGOS_BASE_URL[pp_env]
       @puntopagos_key = config['puntopagos_key']

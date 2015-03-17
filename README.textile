@@ -29,6 +29,16 @@ production:
   puntopagos_secret:  "YOUR-APP-SECRET"
 </pre>
 
+The config file supports ERB templating. For example you can add values from
+your environment
+
+<pre>
+production:
+  environment:        <%= ENV["PUNTOPAGOS_ENV"]%>
+  puntopagos_key:     <%= ENV["PUNTOPAGOS_KEY"]%>
+  puntopagos_secret:  <%= ENV["PUNTOPAGOS_SECRET"]%>
+</pre>
+
 h2. Sample Usage
 
 h3. Create a Transaction and Redirect to process url
